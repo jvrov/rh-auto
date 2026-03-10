@@ -1,4 +1,4 @@
-# Industrial Deal Intelligence (IDI)
+# rh-auto · Industrial Deal Intelligence (IDI)
 
 Sistema de análise de contratos industriais com IA.
 
