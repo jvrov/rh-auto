@@ -1,6 +1,6 @@
 # rh-auto · Industrial Deal Intelligence (IDI)
 
-Sistema de análise de contratos industriais com IA.
+Sistema de análise de contratos industriais com IA (OpenAI).
 
 ## Requisitos
 
@@ -36,12 +36,12 @@ Acesse: http://127.0.0.1:5000
 ## Uso
 
 1. Na página inicial, escolha um contrato em PDF e clique em **Analisar contrato**.
-2. O sistema extrai o texto, analisa com IA e calcula o score de risco (0–10).
+2. O sistema extrai o texto, analisa com OpenAI (gpt-4o-mini) e calcula o score de risco (0–10).
 3. Na página de resultado são exibidos: multas, retenções, responsabilidades, cláusulas perigosas e sugestões de negociação.
 
 ## Estrutura
 
-- `app/` – lógica da aplicação (rotas, PDF, análise, score, modelos)
+- `app/` – lógica da aplicação (rotas, PDF, análise com OpenAI, score, modelos)
 - `templates/` – páginas HTML
 - `uploads/` – PDFs enviados
 - `config.py` – configurações

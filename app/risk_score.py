@@ -1,4 +1,4 @@
-"""Cálculo do score de risco contratual (0 a 10)."""
+"""Cálculo do score de risco contratual (0 a 10) com OpenAI."""
 from openai import OpenAI
 
 
@@ -8,12 +8,14 @@ def calculate_risk_score(
     api_key: str,
 ) -> float:
     """
-    Usa a IA para calcular um score de risco de 0 a 10 com base na análise
+    Usa a OpenAI para calcular um score de risco de 0 a 10 com base na análise
     e no texto do contrato. Retorna valor entre 0 e 10.
     """
     if not api_key:
-        return 5.0  # fallback neutro
+        print("[IDI] risk_score: OPENAI_API_KEY não configurada, retornando 5.0")
+        return 5.0
 
+    print("[IDI] risk_score: calculando score com OpenAI...")
     client = OpenAI(api_key=api_key)
     multas = analysis.get("multas", [])
     retencoes = analysis.get("retencoes_financeiras", [])
@@ -38,9 +40,11 @@ Responda com UM ÚNICO NÚMERO entre 0 e 10 (pode ser decimal, ex: 6.5), sem tex
         ],
         temperature=0.2,
     )
-    raw = response.choices[0].message.content.strip()
+    raw = (response.choices[0].message.content or "").strip()
     try:
         score = float(raw.replace(",", ".").strip())
     except (ValueError, TypeError):
         score = 5.0
-    return max(0.0, min(10.0, score))
+    score = max(0.0, min(10.0, score))
+    print("[IDI] risk_score: score = %.1f" % score)
+    return score

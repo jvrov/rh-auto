@@ -10,6 +10,7 @@ def create_app(config_overrides=None):
     """Factory da aplicação Flask."""
     app = Flask(__name__, template_folder="../templates", static_folder="../static")
     app.config.from_object("config")
+    app.secret_key = app.config.get("SECRET_KEY", "idi-dev-secret")
     if config_overrides:
         app.config.update(config_overrides)
     # Garante UPLOAD_FOLDER como caminho absoluto em string

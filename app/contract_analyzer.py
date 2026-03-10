@@ -17,12 +17,17 @@ def analyze_contract(text: str, api_key: str) -> dict:
     """
     Envia o texto do contrato para a OpenAI e retorna um dicionário
     com multas, retenções, responsabilidades, cláusulas perigosas e sugestões.
+    (O score de risco é calculado separadamente em risk_score.py.)
     """
     if not api_key:
         raise ValueError("OPENAI_API_KEY não configurada.")
 
+    print("[IDI] contract_analyzer: configurando OpenAI...")
     client = OpenAI(api_key=api_key)
+    print("[IDI] contract_analyzer: modelo gpt-4o-mini")
+
     prompt = _build_prompt(text)
+    print("[IDI] contract_analyzer: prompt montado, %d caracteres. Chamando API..." % len(prompt))
 
     response = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -42,8 +47,15 @@ def analyze_contract(text: str, api_key: str) -> dict:
         ],
         temperature=0.3,
     )
-    raw = response.choices[0].message.content.strip()
-    return _parse_analysis_response(raw)
+    raw = response.choices[0].message.content.strip() if response.choices else ""
+    print("[IDI] contract_analyzer: resposta recebida, %d caracteres" % len(raw))
+    if raw and len(raw) <= 500:
+        print("[IDI] contract_analyzer: preview:", raw[:500])
+    elif raw:
+        print("[IDI] contract_analyzer: preview (200 chars):", raw[:200], "...")
+    result = _parse_analysis_response(raw)
+    print("[IDI] contract_analyzer: parse concluído.")
+    return result
 
 
 def _build_prompt(text: str) -> str:
@@ -70,7 +82,6 @@ Responda apenas com o JSON, sem markdown ou texto adicional."""
 
 def _parse_analysis_response(raw: str) -> dict:
     """Extrai JSON da resposta e normaliza as chaves."""
-    # Tenta extrair bloco JSON se vier dentro de markdown
     raw = raw.strip()
     if raw.startswith("```"):
         match = re.search(r"```(?:json)?\s*([\s\S]*?)```", raw)
@@ -78,7 +89,8 @@ def _parse_analysis_response(raw: str) -> dict:
             raw = match.group(1).strip()
     try:
         data = json.loads(raw)
-    except json.JSONDecodeError:
+    except json.JSONDecodeError as e:
+        print("[IDI] contract_analyzer: AVISO - JSON inválido na resposta:", e)
         data = {}
     result = {}
     for key in ANALYSIS_KEYS:
