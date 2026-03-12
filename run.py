@@ -1,10 +1,13 @@
-"""Ponto de entrada da aplicação IDI."""
-import os
+"""Ponto de entrada do IDI — inicia o dashboard Dash.
+Execute: python run.py  (ou .venv/bin/python run.py)
+Defina a chave no terminal antes: export OPENAI_API_KEY="sua-chave"
+Acesse: http://127.0.0.1:8050"""
+import sys
+from pathlib import Path
 
-from app import create_app
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-app = create_app()
+from dash_app.app import app
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="127.0.0.1", port=8050, debug=True)

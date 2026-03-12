@@ -7,7 +7,7 @@ from flask import render_template, request, redirect, url_for, flash, current_ap
 from . import models
 from .pdf_reader import extract_text_from_pdf
 from .contract_analyzer import analyze_contract
-from .risk_score import calculate_risk_score
+from .hybrid_risk_score import compute_hybrid_score, get_nivel_risco, combine_scores
 
 
 def allowed_file(filename):
@@ -61,8 +61,12 @@ def register_routes(app):
         try:
             print("[IDI] Enviando texto para análise com OpenAI...")
             analysis = analyze_contract(text, api_key)
-            risk_score = calculate_risk_score(analysis, text, api_key)
-            print("[IDI] Análise concluída. Score de risco: %.1f" % risk_score)
+            score_ia = analysis.get("score_risco", 5.0)
+            score_hibrido = compute_hybrid_score(analysis)
+            risk_score = combine_scores(score_ia, score_hibrido)
+            analysis["score_risco"] = risk_score
+            analysis["nivel_risco"] = get_nivel_risco(risk_score)
+            print("[IDI] Análise concluída. Score IA=%.1f, Híbrido=%.1f, Final=%.1f (%s)" % (score_ia, score_hibrido, risk_score, analysis["nivel_risco"]))
         except Exception as e:
             print("[IDI] ERRO na análise com IA:", type(e).__name__, str(e))
             import traceback
@@ -96,13 +100,20 @@ def register_routes(app):
             analysis = json.loads(contract["analysis_text"])
         except (json.JSONDecodeError, TypeError):
             pass
+        risk_score = contract["risk_score"]
         return render_template(
             "result.html",
             filename=contract["filename"],
-            risk_score=contract["risk_score"],
+            risk_score=risk_score,
+            nivel_risco=analysis.get("nivel_risco") or ("baixo" if risk_score <= 3 else ("moderado" if risk_score <= 6 else "alto")),
             multas=analysis.get("multas", []),
-            retencoes=analysis.get("retencoes_financeiras", []),
+            retencoes=analysis.get("retencoes", []) or analysis.get("retencoes_financeiras", []),
+            responsabilidades_contratada=analysis.get("responsabilidades_contratada", []),
+            responsabilidades_contratante=analysis.get("responsabilidades_contratante", []),
             responsabilidades=analysis.get("responsabilidades", []),
             clausulas_perigosas=analysis.get("clausulas_perigosas", []),
+            riscos_financeiros=analysis.get("riscos_financeiros", []),
+            riscos_juridicos=analysis.get("riscos_juridicos", []),
+            riscos_operacionais=analysis.get("riscos_operacionais", []),
             sugestoes=analysis.get("sugestoes_negociacao", []),
         )

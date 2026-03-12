@@ -42,6 +42,7 @@
         .score-value.medium { color: #eab308; }
         .score-value.high { color: #ef4444; }
         .score-label { color: #94a3b8; font-size: 0.9rem; margin-top: 0.25rem; }
+        .nivel-risco { font-size: 0.85rem; margin-top: 0.35rem; text-transform: capitalize; }
         .section {
             background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(71, 85, 105, 0.5);
@@ -58,8 +59,9 @@
         }
         .section ul { margin: 0; padding-left: 1.25rem; }
         .section li { margin-bottom: 0.5rem; color: #cbd5e1; font-size: 0.9rem; }
-        .section.empty .section ul { list-style: none; padding-left: 0; }
-        .section.empty .section li { font-style: italic; color: #64748b; }
+        .clausula-item { margin-bottom: 1rem; padding: 0.75rem; background: rgba(15, 23, 42, 0.5); border-radius: 8px; }
+        .clausula-item .trecho { font-style: italic; color: #94a3b8; margin-bottom: 0.35rem; }
+        .clausula-item .motivo { color: #fca5a5; font-size: 0.85rem; }
         .sugestoes .section li { color: #86efac; }
     </style>
 </head>
@@ -74,6 +76,7 @@
                 {{ "%.1f"|format(risk_score) }}
             </div>
             <div class="score-label">Score de risco contratual (0–10)</div>
+            <div class="nivel-risco">Nível: {{ nivel_risco }}</div>
         </div>
 
         <div class="section">
@@ -99,25 +102,84 @@
         </div>
 
         <div class="section">
-            <h2>Responsabilidades</h2>
+            <h2>Responsabilidades da Contratada</h2>
             <ul>
-                {% for item in responsabilidades %}
+                {% for item in responsabilidades_contratada %}
                     <li>{{ item }}</li>
                 {% else %}
-                    <li>Nenhuma responsabilidade listada.</li>
+                    {% for item in responsabilidades %}
+                        <li>{{ item }}</li>
+                    {% else %}
+                        <li>Nenhuma listada.</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Responsabilidades da Contratante</h2>
+            <ul>
+                {% for item in responsabilidades_contratante %}
+                    <li>{{ item }}</li>
+                {% else %}
+                    <li>Nenhuma listada.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Riscos financeiros</h2>
+            <ul>
+                {% for item in riscos_financeiros %}
+                    <li>{{ item }}</li>
+                {% else %}
+                    <li>Nenhum identificado.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Riscos jurídicos</h2>
+            <ul>
+                {% for item in riscos_juridicos %}
+                    <li>{{ item }}</li>
+                {% else %}
+                    <li>Nenhum identificado.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Riscos operacionais</h2>
+            <ul>
+                {% for item in riscos_operacionais %}
+                    <li>{{ item }}</li>
+                {% else %}
+                    <li>Nenhum identificado.</li>
                 {% endfor %}
             </ul>
         </div>
 
         <div class="section">
             <h2>Cláusulas perigosas</h2>
-            <ul>
+            {% if clausulas_perigosas %}
+                <ul style="list-style: none; padding-left: 0;">
                 {% for item in clausulas_perigosas %}
-                    <li>{{ item }}</li>
-                {% else %}
-                    <li>Nenhuma cláusula perigosa identificada.</li>
+                    <li>
+                    {% if item is mapping and item.get('trecho') %}
+                        <div class="clausula-item">
+                            <div class="trecho">"{{ item.trecho }}"</div>
+                            {% if item.get('motivo') %}<div class="motivo">Motivo: {{ item.motivo }}</div>{% endif %}
+                        </div>
+                    {% else %}
+                        {{ item }}
+                    {% endif %}
+                    </li>
                 {% endfor %}
-            </ul>
+                </ul>
+            {% else %}
+                <ul><li>Nenhuma cláusula perigosa identificada.</li></ul>
+            {% endif %}
         </div>
 
         <div class="section sugestoes">
