@@ -5,6 +5,9 @@ rescisão unilateral, penalidades acumulativas.
 Escala: 0-3 baixo, 4-6 moderado, 7-10 alto.
 """
 import re
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 # Padrões que indicam risco (case insensitive)
@@ -76,7 +79,7 @@ def compute_hybrid_score(analysis: dict) -> float:
 
     # Converter pontos (máximo ~8) para escala 0-10
     score = min(10.0, points * 1.4)  # 8*1.4 = 11.2 -> cap 10
-    print("[IDI] hybrid_risk_score: pontos=%.1f -> score=%.1f" % (points, score))
+    logger.info("Pontos=%.1f -> score=%.1f", points, score)
     return round(score, 1)
 
 

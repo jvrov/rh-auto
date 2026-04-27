@@ -1,4 +1,12 @@
+python-dotenv>=1.0.0
 Flask==3.0.0
 pdfplumber==0.10.3
 openai>=1.12.0
 Werkzeug==3.0.1
+dash>=2.14.0
+dash-bootstrap-components>=1.5.0
+plotly>=5.18.0
+pandas>=2.0.0
+pywebview>=4.0
+PyQt6>=6.4.0
+PyQt6-WebEngine>=6.4.0

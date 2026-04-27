@@ -1,34 +1,8 @@
-# Ambiente virtual
-.venv/
-venv/
-env/
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-*.egg-info/
-.eggs/
-dist/
-build/
-
-# Banco e uploads (dados locais)
-idi.db
-uploads/*
-!uploads/.gitkeep
-
-# Chaves e segredos
+node_modules
 .env
-.env.local
-*.pem
-
-# IDE / OS
-.idea/
-.vscode/
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
+__pycache__/
+*.pyc
+.venv/
+data/app.db
+idi.db
+uploads/*.pdf

@@ -1,5 +1,6 @@
 """Análise de contrato com IA (OpenAI) - estrutura completa."""
 import json
+import logging
 import re
 from openai import OpenAI
 
@@ -18,6 +19,8 @@ RESPONSE_KEYS = [
     "nivel_risco",
 ]
 
+logger = logging.getLogger(__name__)
+
 
 def analyze_contract(text: str, api_key: str) -> dict:
     """
@@ -28,12 +31,12 @@ def analyze_contract(text: str, api_key: str) -> dict:
     if not api_key:
         raise ValueError("OPENAI_API_KEY não configurada.")
 
-    print("[IDI] contract_analyzer: configurando OpenAI...")
+    logger.info("Configurando OpenAI")
     client = OpenAI(api_key=api_key)
-    print("[IDI] contract_analyzer: modelo gpt-4o-mini")
+    logger.debug("Modelo: gpt-4o-mini")
 
     prompt = _build_prompt(text)
-    print("[IDI] contract_analyzer: prompt montado, %d caracteres. Chamando API..." % len(prompt))
+    logger.info("Chamando API com prompt de %d caracteres", len(prompt))
 
     response = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -44,13 +47,11 @@ def analyze_contract(text: str, api_key: str) -> dict:
         temperature=0.3,
     )
     raw = response.choices[0].message.content.strip() if response.choices else ""
-    print("[IDI] contract_analyzer: resposta recebida, %d caracteres" % len(raw))
-    if raw and len(raw) <= 500:
-        print("[IDI] contract_analyzer: preview:", raw[:500])
-    elif raw:
-        print("[IDI] contract_analyzer: preview (200 chars):", raw[:200], "...")
+    logger.info("Resposta recebida com %d caracteres", len(raw))
+    if raw:
+        logger.debug("Preview da resposta: %s", raw[:300])
     result = _parse_analysis_response(raw)
-    print("[IDI] contract_analyzer: parse concluído.")
+    logger.info("Parse concluído")
     return result
 
 
@@ -98,7 +99,7 @@ def _parse_analysis_response(raw: str) -> dict:
     try:
         data = json.loads(raw)
     except json.JSONDecodeError as e:
-        print("[IDI] contract_analyzer: AVISO - JSON inválido:", e)
+        logger.warning("JSON inválido: %s", e)
         data = {}
 
     result = {}

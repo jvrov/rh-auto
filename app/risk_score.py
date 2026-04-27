@@ -1,5 +1,8 @@
 """Cálculo do score de risco contratual (0 a 10) com OpenAI."""
+import logging
 from openai import OpenAI
+
+logger = logging.getLogger(__name__)
 
 
 def calculate_risk_score(
@@ -12,10 +15,10 @@ def calculate_risk_score(
     e no texto do contrato. Retorna valor entre 0 e 10.
     """
     if not api_key:
-        print("[IDI] risk_score: OPENAI_API_KEY não configurada, retornando 5.0")
+        logger.warning("OPENAI_API_KEY não configurada, retornando 5.0")
         return 5.0
 
-    print("[IDI] risk_score: calculando score com OpenAI...")
+    logger.info("Calculando score com OpenAI")
     client = OpenAI(api_key=api_key)
     multas = analysis.get("multas", [])
     retencoes = analysis.get("retencoes_financeiras", [])
@@ -46,5 +49,5 @@ Responda com UM ÚNICO NÚMERO entre 0 e 10 (pode ser decimal, ex: 6.5), sem tex
     except (ValueError, TypeError):
         score = 5.0
     score = max(0.0, min(10.0, score))
-    print("[IDI] risk_score: score = %.1f" % score)
+    logger.info("Score calculado: %.1f", score)
     return score

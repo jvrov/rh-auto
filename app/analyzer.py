@@ -1,24 +1,22 @@
 """
-Analisador de risco contratual com IA.
-Chama a análise do projeto principal e devolve o dicionário no formato do dashboard:
-nome_contrato, score, nivel, multas, retencoes, responsabilidades_*, riscos_*, clausulas_perigosas, sugestoes.
+Analisador de contrato: IA + motor de risco.
+Retorna dicionário no formato do dashboard (score, nivel, multas, cláusulas, etc.).
 """
 import os
-import sys
 from pathlib import Path
 
+import sys
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from app.contract_analyzer import analyze_contract
-from app.hybrid_risk_score import compute_hybrid_score, get_nivel_risco, combine_scores
+from app.risk_engine import compute_hybrid_score, get_nivel_risco, combine_scores
 
 
 def analyze_contract_for_dashboard(text: str, nome_contrato: str = "", api_key: str = None) -> dict:
     """
     Executa análise do contrato e retorna dicionário no formato do dashboard.
-    api_key: se None, usa os.environ["OPENAI_API_KEY"].
     """
     api_key = api_key or os.environ.get("OPENAI_API_KEY", "")
     if not api_key:
@@ -30,7 +28,6 @@ def analyze_contract_for_dashboard(text: str, nome_contrato: str = "", api_key: 
     score_final = combine_scores(score_ia, score_hibrido)
     nivel = get_nivel_risco(score_final)
 
-    # Normalizar cláusulas: trecho -> texto (formato esperado pelo dashboard)
     clausulas = raw.get("clausulas_perigosas", [])
     clausulas_norm = []
     for c in clausulas:

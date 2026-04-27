@@ -1,0 +1,298 @@
+[
+  {
+    "id": 1,
+    "nome_contrato": "Document 1.pdf",
+    "score": 3.0,
+    "nivel": "baixo",
+    "data_analise": "2026-03-12T11:50:32.603251",
+    "resultado": {
+      "nome_contrato": "Document 1.pdf",
+      "score": 3.0,
+      "nivel": "baixo",
+      "multas": [
+        "5% sobre a parcela mensal",
+        "3% do valor total do contrato em caso de falhas críticas recorrentes"
+      ],
+      "retencoes": [
+        "8% do valor de cada pagamento mensal como garantia de execução do serviço"
+      ],
+      "responsabilidades_contratada": [
+        "manter equipe técnica qualificada",
+        "realizar manutenção preventiva mensal",
+        "solucionar incidentes dentro dos prazos definidos"
+      ],
+      "responsabilidades_contratante": [
+        "fornecer acesso aos sistemas e infraestrutura",
+        "disponibilizar documentação técnica necessária",
+        "comunicar falhas técnicas com antecedência"
+      ],
+      "riscos_financeiros": [
+        "multas elevadas",
+        "retenções altas"
+      ],
+      "riscos_juridicos": [],
+      "riscos_operacionais": [
+        "obrigações técnicas críticas"
+      ],
+      "clausulas_perigosas": [
+        {
+          "texto": "A responsabilidade da CONTRATADA será limitada ao valor total do contrato.",
+          "motivo": "Embora a responsabilidade esteja limitada, é importante garantir que isso seja claramente definido para evitar interpretações que possam levar a responsabilidades adicionais."
+        },
+        {
+          "texto": "A CONTRATANTE poderá reter 8% do valor de cada pagamento mensal como garantia de execução do serviço.",
+          "motivo": "A retenção de 8% é superior ao limite recomendado de 5%, o que pode impactar o fluxo de caixa da CONTRATADA."
+        }
+      ],
+      "sugestoes": [
+        "sugerir reduzir a retenção para 5%",
+        "sugerir renegociar a multa de 3% para um percentual menor"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "nome_contrato": "CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE MANUTENÇÃO INDUSTRIAL.pdf",
+    "score": 7.5,
+    "nivel": "alto",
+    "data_analise": "2026-03-12T11:54:46.834443",
+    "resultado": {
+      "nome_contrato": "CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE MANUTENÇÃO INDUSTRIAL.pdf",
+      "score": 7.5,
+      "nivel": "alto",
+      "multas": [
+        "10% do valor total do contrato por ocorrência",
+        "5% sobre o valor total restante do contrato em caso de atraso superior a 30 dias"
+      ],
+      "retencoes": [
+        "15% do valor total de cada pagamento como garantia",
+        "liberação após 90 dias da conclusão do contrato"
+      ],
+      "responsabilidades_contratada": [
+        "danos causados aos equipamentos industriais",
+        "falhas técnicas decorrentes de execução inadequada",
+        "prejuízos operacionais causados à produção da CONTRATANTE",
+        "responsabilidade não limitada ao valor do contrato"
+      ],
+      "responsabilidades_contratante": [
+        "disponibilizar acesso às instalações",
+        "fornecer documentação técnica necessária",
+        "permitir acesso aos equipamentos durante os horários de manutenção programados"
+      ],
+      "riscos_financeiros": [
+        "multas elevadas",
+        "retenções altas"
+      ],
+      "riscos_juridicos": [
+        "responsabilidade ilimitada",
+        "rescisão unilateral"
+      ],
+      "riscos_operacionais": [
+        "obrigações técnicas críticas",
+        "dependência de acesso"
+      ],
+      "clausulas_perigosas": [
+        {
+          "texto": "A responsabilidade da CONTRATADA não estará limitada ao valor do contrato",
+          "motivo": "Responsabilidade ilimitada pode gerar custos inesperados para a CONTRATADA."
+        },
+        {
+          "texto": "A CONTRATANTE poderá rescindir o contrato unilateralmente e sem aviso prévio",
+          "motivo": "Rescisão unilateral pode prejudicar a CONTRATADA sem oportunidade de defesa."
+        },
+        {
+          "texto": "A CONTRATANTE poderá reter 15% do valor total de cada pagamento",
+          "motivo": "Retenção superior a 10% pode impactar o fluxo de caixa da CONTRATADA."
+        },
+        {
+          "texto": "multa equivalente a 10% do valor total do contrato por ocorrência",
+          "motivo": "Multa superior a 5% é considerada elevada e pode gerar riscos financeiros."
+        },
+        {
+          "texto": "penalidade adicional de 5% sobre o valor total restante do contrato",
+          "motivo": "Penalidades acumulativas podem resultar em encargos financeiros excessivos."
+        }
+      ],
+      "sugestoes": [
+        "limitar a responsabilidade da CONTRATADA ao valor do contrato",
+        "reduzir a retenção para 5%",
+        "renegociar percentual de multas para valores inferiores a 5%"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "nome_contrato": "Document 1.pdf",
+    "score": 4.0,
+    "nivel": "moderado",
+    "data_analise": "2026-03-12T21:40:18.870300",
+    "resultado": {
+      "nome_contrato": "Document 1.pdf",
+      "score": 4.0,
+      "nivel": "moderado",
+      "multas": [
+        "5% sobre a parcela mensal",
+        "3% do valor total do contrato em caso de falhas críticas recorrentes"
+      ],
+      "retencoes": [
+        "8% do valor de cada pagamento mensal como garantia de execução do serviço"
+      ],
+      "responsabilidades_contratada": [
+        "manter equipe técnica qualificada",
+        "realizar manutenção preventiva mensal",
+        "solucionar incidentes dentro dos prazos definidos"
+      ],
+      "responsabilidades_contratante": [
+        "fornecer acesso aos sistemas e infraestrutura",
+        "disponibilizar documentação técnica necessária",
+        "comunicar falhas técnicas com antecedência"
+      ],
+      "riscos_financeiros": [
+        "multas elevadas",
+        "retenções altas"
+      ],
+      "riscos_juridicos": [
+        "rescisão unilateral"
+      ],
+      "riscos_operacionais": [
+        "obrigações técnicas críticas",
+        "dependência de acesso"
+      ],
+      "clausulas_perigosas": [
+        {
+          "texto": "A responsabilidade da CONTRATADA será limitada ao valor total do contrato.",
+          "motivo": "Embora a responsabilidade esteja limitada, é importante verificar se isso é suficiente para cobrir eventuais danos."
+        },
+        {
+          "texto": "A CONTRATANTE poderá reter 8% do valor de cada pagamento mensal como garantia de execução do serviço.",
+          "motivo": "A retenção de 8% é superior ao limite recomendado de 5%, o que pode gerar problemas de fluxo de caixa para a CONTRATADA."
+        },
+        {
+          "texto": "Qualquer das partes poderá rescindir este contrato mediante aviso prévio de 15 dias.",
+          "motivo": "A rescisão unilateral com aviso prévio de apenas 15 dias pode ser considerada arriscada, pois pode não dar tempo suficiente para a parte afetada se ajustar."
+        }
+      ],
+      "sugestoes": [
+        "reduzir a retenção de 8% para 5%",
+        "renegociar as multas para valores mais baixos",
+        "discutir um prazo de aviso prévio maior para rescisão"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "nome_contrato": "Document 1.pdf",
+    "score": 4.4,
+    "nivel": "moderado",
+    "data_analise": "2026-03-17T08:17:40.674602",
+    "resultado": {
+      "nome_contrato": "Document 1.pdf",
+      "score": 4.4,
+      "nivel": "moderado",
+      "multas": [
+        "5% sobre a parcela mensal",
+        "3% do valor total do contrato em caso de falhas críticas recorrentes"
+      ],
+      "retencoes": [
+        "8% do valor de cada pagamento mensal como garantia de execução do serviço"
+      ],
+      "responsabilidades_contratada": [
+        "manter equipe técnica qualificada",
+        "realizar manutenção preventiva mensal",
+        "solucionar incidentes dentro dos prazos definidos"
+      ],
+      "responsabilidades_contratante": [
+        "fornecer acesso aos sistemas e infraestrutura",
+        "disponibilizar documentação técnica necessária",
+        "comunicar falhas técnicas com antecedência"
+      ],
+      "riscos_financeiros": [
+        "multas elevadas",
+        "retenções altas"
+      ],
+      "riscos_juridicos": [
+        "responsabilidade ilimitada",
+        "rescisão unilateral"
+      ],
+      "riscos_operacionais": [
+        "obrigações técnicas críticas",
+        "dependência de acesso"
+      ],
+      "clausulas_perigosas": [
+        {
+          "texto": "A responsabilidade da CONTRATADA será limitada ao valor total do contrato.",
+          "motivo": "Embora a responsabilidade esteja limitada, é importante garantir que não haja cláusulas que possam levar a uma responsabilidade ilimitada em outras situações."
+        },
+        {
+          "texto": "A CONTRATANTE poderá reter 8% do valor de cada pagamento mensal como garantia de execução do serviço.",
+          "motivo": "A retenção de 8% é superior ao limite recomendado de 5%, o que pode impactar o fluxo de caixa da CONTRATADA."
+        },
+        {
+          "texto": "multa adicional de 3% do valor total do contrato em caso de falhas críticas recorrentes",
+          "motivo": "A multa adicional de 3% pode ser considerada elevada, especialmente se acumulada com outras penalidades."
+        }
+      ],
+      "sugestoes": [
+        "sugerir limitar a retenção para 5%",
+        "sugerir renegociar a multa adicional para um percentual menor"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "nome_contrato": "Document 1.pdf",
+    "score": 3.5,
+    "nivel": "moderado",
+    "data_analise": "2026-03-17T08:58:41.418266",
+    "resultado": {
+      "nome_contrato": "Document 1.pdf",
+      "score": 3.5,
+      "nivel": "moderado",
+      "multas": [
+        "5% sobre a parcela mensal",
+        "3% do valor total do contrato em caso de falhas críticas recorrentes"
+      ],
+      "retencoes": [
+        "8% do valor de cada pagamento mensal como garantia de execução do serviço"
+      ],
+      "responsabilidades_contratada": [
+        "manter equipe técnica qualificada",
+        "realizar manutenção preventiva mensal",
+        "solucionar incidentes dentro dos prazos definidos"
+      ],
+      "responsabilidades_contratante": [
+        "fornecer acesso aos sistemas e infraestrutura",
+        "disponibilizar documentação técnica necessária",
+        "comunicar falhas técnicas com antecedência"
+      ],
+      "riscos_financeiros": [
+        "multas elevadas",
+        "retenções altas"
+      ],
+      "riscos_juridicos": [
+        "rescisão unilateral"
+      ],
+      "riscos_operacionais": [
+        "obrigações técnicas críticas"
+      ],
+      "clausulas_perigosas": [
+        {
+          "texto": "A responsabilidade da CONTRATADA será limitada ao valor total do contrato.",
+          "motivo": "Embora a responsabilidade seja limitada, a cláusula pode ser considerada perigosa se não houver clareza sobre o que está coberto."
+        },
+        {
+          "texto": "A CONTRATANTE poderá reter 8% do valor de cada pagamento mensal como garantia de execução do serviço.",
+          "motivo": "Retenção superior a 10% é considerada arriscada, mas neste caso é 8%, o que é aceitável."
+        },
+        {
+          "texto": "Qualquer das partes poderá rescindir este contrato mediante aviso prévio de 15 dias.",
+          "motivo": "Rescisão unilateral pode ser considerada arriscada se não houver compensações ou penalidades."
+        }
+      ],
+      "sugestoes": [
+        "sugerir limitar a responsabilidade da CONTRATADA ao valor do contrato",
+        "sugerir reduzir a retenção para 5%"
+      ]
+    }
+  }
+]
