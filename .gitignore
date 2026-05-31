@@ -1,0 +1,13 @@
+# Ignore local environment files
+**/.env
+
+# Ignore node modules
+node_modules/
+
+# Ignore local database files
+backend/database/*.db
+backend/database/*.db-shm
+backend/database/*.db-wal
+hr-ai-system/backend/database/*.db
+hr-ai-system/backend/database/*.db-shm
+hr-ai-system/backend/database/*.db-wal
